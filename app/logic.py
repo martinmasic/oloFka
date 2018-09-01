@@ -50,15 +50,12 @@ def change_user_password(user_id, old_password, new_password):
 		return False
 
 
-# def delete_user(user_id):
-#	... revisions
-# 	Document.delete().where(Document.project.author_id == user_id).execute()
-# 	... projects
-# 	... document_tags
-# 	... project_tags
-# 	... tags
-# 	... user_settings
-# 	... user
+def delete_user(user_id):
+	for project in list_projects(user_id):
+		delete_project(project.id)
+	Tag.delete().where(Tag.user == user_id)
+	UserSettings.delete().where(UserSettings.user == user_id) #finish this after finishing UserSettings
+	User.delete().where(User.id == user_id)
 
 
 def list_projects(user_id):

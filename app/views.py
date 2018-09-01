@@ -70,14 +70,14 @@ def list_documents_route():
 
 #TODO finish this
 @app.route('/projects/<project_id>', methods=['POST'])
-@jwt_required
+#@jwt_required
 def create_project_document_route():
 	title = request.form.get('title')
 	document_type = request.form.get('document_type')
 	revision = request.form.get('revision')
 	#visibility
 	place_in_project = request.form.get('place_in_project') #TODO how to find this automagically?
-	
+
 	document = create_document(project_id, title, active_revision, place_in_project, document_type)
 
 
